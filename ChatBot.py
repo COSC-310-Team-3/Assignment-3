@@ -4,6 +4,8 @@ from tkinter import *
 from nltk.chat.util import Chat, reflections
 from nltk.tokenize import word_tokenize
 from nltk.tag import pos_tag
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+
 
 # This is a modified converse function from nltk.chat.util
 class modifiedChat(Chat):
@@ -43,6 +45,8 @@ def checkForCurrency(userInput):
             truth = True
     return truth;
 
+#method to check for year inputs
+
 def checkForNum(userInput):
     userInput = nltk.word_tokenize(userInput)
     userInput = nltk.pos_tag(userInput)
@@ -53,15 +57,27 @@ def checkForNum(userInput):
             truth = True
     return truth;
 
+#method to check polarity of the user input
+
+def checkPolarity(userInput):
+    analyzer1 = SentimentIntensityAnalyzer()
+    text = analyzer1.polarity_scores(userInput)
+    truth = False
+    if text['compound'] < -0.299:
+        truth = True
+    return truth;
+
 
 #This function retrieves the userInput and then passes it to the console
 def sendClick():     
     userInput = mesWin.get("1.0", END)
     mesWin.delete("1.0", END)
     
-    truth = checkForCurrency(userInput)
+    truth = checkForCurrency(userInput)    
     
     truth1 = checkForNum(userInput)
+    
+    truth2 = checkPolarity(userInput)
     
     if(truth == True):
         reply = "Sorry. I don't understand currency well. Can you try again?"
@@ -69,7 +85,10 @@ def sendClick():
         if(truth1 == True):
             reply = "Sorry, I am unfamiliar with that year. Can you try again?"
         else:
-            reply = chatbot.converse(userInput)
+            if(truth2 == True):
+                reply = "Well that does not seem very nice!"
+            else:
+                reply = chatbot.converse(userInput)
     output = ""
     chatWin.configure(state="normal")
     if "To begin" in chatWin.get("1.0", END):
