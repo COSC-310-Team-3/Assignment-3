@@ -190,6 +190,11 @@ pairs = [
     ['(.*) best soccer team in Canada?', ['Vancouver Whitecaps']],
     ['(.*) best canadian soccer player?', ['Alphonso Davies']],
     ['(.*)', ['Sorry can you try again I do not understand']],
+    ['(.*) the weather outside?', ['I do not know, ask me about sports']],
+    ['(.*) cars(.*)', ['Why are you asking me about cars. I am a sports bot']],
+    ['(.*) favourite food(.*)', ['I do not eat food. I am a bot. Ask me something else']],
+    ['(.*) computers(.*)?', ['Ask me about sports. I can not understand anything else but sports']],
+    ['(.*) clothes(.*)?', ['I am not a fashion bot. I am sports bot, ask about topics related to sports']],
     ['', ['Sorry can you try again I do not understand']]
 ]
 
