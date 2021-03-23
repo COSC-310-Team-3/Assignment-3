@@ -11,9 +11,14 @@ Sentiment analysis adds to the bot by analyzing the user input, judging the over
 Example output:
 
 when is the next world cup?
+
                                                       Next year in Qatar
+                                                      
 who will win the next world cup?
+
                                                       Canada, no doubt. They are a soccer powerhouse
+                                                      
 what are you talking about?? Canada sucks at soccer!
+
                                                       Well that does not seem very nice!
                 
