@@ -1,0 +1,2 @@
+# Add any libraries that need to be installed first
+nltk
