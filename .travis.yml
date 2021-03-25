@@ -1,11 +1,8 @@
 languge: python
 python:
-  - "3.6"
   - "3.8"
 cache: pip
 install: "pip install -r req.txt"
-script:
-  - python import tkinter
-  - python from tkinter import *  
+script: 
   - python test_bot.py
 
