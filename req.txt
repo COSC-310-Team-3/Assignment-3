@@ -2,5 +2,5 @@
 nltk
 vaderSentiment
 ChatBot
-tkinter
+
 
