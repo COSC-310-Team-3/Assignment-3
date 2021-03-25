@@ -3,5 +3,5 @@ python:
   - "3.8"
 cache: pip 
 install: "pip install -r req.txt"
-before_script: "export DISPLAY=:0"
 script: python test_bot.py
+after_script: "export DISPLAY=:0"
