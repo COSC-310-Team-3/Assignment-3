@@ -1,6 +1,8 @@
 import nltk
 import tkinter
 from tkinter import *
+import sys
+import os
 from nltk.chat.util import Chat, reflections
 from nltk.tokenize import word_tokenize
 from nltk.tag import pos_tag
@@ -119,6 +121,9 @@ def beginClick():
                     foreground="#FFFFFF", font=("Arial", 12), command=sendClick)
     sendIn.place(x=455, y=400, height=88)
 
+if os.environ.get('DISPLAY', '') == '':
+    print('no display found. Using :0.0')
+    os.environ.__setitem__('DISPLAY', ':0.0')
 
 # this section is where the GUI will be built
 root = Tk()

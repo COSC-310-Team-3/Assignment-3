@@ -2,5 +2,6 @@ languge: python
 python:
   - "3.8"
 cache: pip
+export: 
 install: "pip install -r req.txt"
 script: python test_bot.py
