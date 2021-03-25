@@ -71,7 +71,7 @@ def checkPolarity(userInput):
     truth = False
     if text['compound'] < -0.299:
         truth = True
-    return truth;
+    return truth
 
 
 # This function retrieves the userInput and then passes it to the console

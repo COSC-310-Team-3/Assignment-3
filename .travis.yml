@@ -4,4 +4,3 @@ python:
 cache: pip
 install: "pip install -r req.txt"
 script: python test_bot.py
- 
