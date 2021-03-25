@@ -1,8 +1,6 @@
 languge: python
 python:
-- "3.5"
-- "3.6"
-- "3.8"
+  - "3.8"
 cache: pip
 install: "pip install -r req.txt"
 script: python test_bot.py
