@@ -4,7 +4,6 @@ python:
 cache: pip
 before_script: 
   - export DISPLAY=127.0.0.1:0.0
-  - docker run -it -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix yourImage 
 install: "pip install -r req.txt"
 
 script: python test_bot.py
