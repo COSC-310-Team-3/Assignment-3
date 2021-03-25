@@ -4,6 +4,8 @@ python:
   - "3.8"
 cache: pip
 install: "pip install -r req.txt"
-before_script: export DISPLAY=127.0.0.1:0.0
-script: python test_bot.py
+script:
+  - python import tkinter
+  - python from tkinter import *  
+  - python test_bot.py
 
