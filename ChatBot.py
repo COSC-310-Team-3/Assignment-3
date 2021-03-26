@@ -1,18 +1,22 @@
 import nltk
 import tkinter
+import string
 from tkinter import *
 from nltk.chat.util import Chat, reflections
 from nltk.tokenize import word_tokenize
 from nltk.tag import pos_tag
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
-
+from nltk.corpus import wordnet
+nltk.download('wordnet')
 nltk.download('averaged_perceptron_tagger')
 from nltk import word_tokenize
+
 
 
 # This is a modified converse function from nltk.chat.util
 class modifiedChat(Chat):
     def converse(self, user_input):
+        
         while user_input[-1] in "!.":
             user_input = user_input[:-1]
         return self.respond(user_input)
@@ -47,7 +51,7 @@ def checkForCurrency(userInput):
         a = userInput[i]
         if (a[1] == '$'):
             truth = True
-    return truth;
+    return truth
 
 
 # method to check for year inputs
@@ -60,7 +64,7 @@ def checkForNum(userInput):
         a = userInput[i]
         if (a[1] == 'CD' and len(a[0]) == 4 and (a[0][0] == '2' or a[0][0] == '1')):
             truth = True
-    return truth;
+    return truth
 
 
 # method to check polarity of the user input
@@ -73,13 +77,66 @@ def checkPolarity(userInput):
         truth = True
     return truth
 
+# this just adds commas based on simple rules
+def addComma(text):
+    parsed_text = text.split(' ')
+    i = 0
+    for word in parsed_text:
+        if word == 'yes':
+            parsed_text[i] = 'yes,'
+        if word == 'no':
+            parsed_text[i] = 'no,'
+        i+=1
+    return ' '.join(parsed_text)
+
+
+
+# this function replaces words with synonyms and tries to converse with them
+# if no synonym is found, it will output the default reply
+def tryConverseWithSynonyms(userIn):
+    tokens = word_tokenize(userIn)
+    words = nltk.pos_tag(tokens)
+    queue = []
+    i = 0
+    for word in words:
+        toMutate = tokens
+        # to prevent long 'thinking' times we will only try changing adjectives, and verbs
+        if 'JJ' in word[1] or 'VB' in word[1]: 
+            # get all the synsets of the adjectives and verbs
+            synset = wordnet.synsets(word[0])
+            synonyms = []
+            # add all the words to the synonyms array
+            for x in synset:
+               synonyms.append(x.lemmas()[0].name())
+            # mutate the original sentence with the synonyms
+            for synonym in synonyms:
+               toMutate[i] = synonym
+               # This monster just detokenizes a string
+               mutated = "".join([" "+i if not i.startswith("'") and i not in string.punctuation else i for i in tokens]).strip().lower()
+               # add the mutated sentence to the queue
+               if mutated not in queue:
+                   queue.append(mutated)
+        i+=1
+    # iterate through the queue
+    while len(queue) != 0:
+        test = queue.pop()
+        # try to converse with the mutated sentence
+        reply = chatbot.converse(test)
+        # if it is not understood the next mutated sentence
+        sorry = word_tokenize(reply)
+        if sorry[0] != "Sorry":
+            return reply
+    return 'Sorry can you try again, I do not understand'
+       
 
 # This function retrieves the userInput and then passes it to the console
 def sendClick():
     userInput = mesWin.get("1.0", END)
-    userInput = userInput.lower();
-    text = word_tokenize(userInput);
-    print(nltk.pos_tag(text));
+    userInput = userInput.lower()
+    text = word_tokenize(userInput)
+    print(nltk.pos_tag(text))
+    words = nltk.pos_tag(text)    
+    userInput = addComma(userInput)
     mesWin.delete("1.0", END)
     truth = checkForCurrency(userInput)
     truth1 = checkForNum(userInput)
@@ -93,7 +150,7 @@ def sendClick():
             if (truth2 == True):
                 reply = "Well that does not seem very nice!"
             else:
-                reply = chatbot.converse(userInput)
+                reply = tryConverseWithSynonyms(userInput)
     output = ""
     chatWin.configure(state="normal")
     if "To begin" in chatWin.get("1.0", END):
@@ -104,6 +161,8 @@ def sendClick():
     chatWin.insert(END, output)
     chatWin.see(END)
     chatWin.configure(state="disabled")
+
+
 
 
 # generate the  and run the chat interface
@@ -173,7 +232,7 @@ pairs = [
     ['(.*) favourite goal of all time?', ['Any of Loui Erikksons empty nets']],
     ['who is the most well known canadian hockey player', ['That is Wayne Gretzky easily']],
     ['how many hockey players can you name', ['I can name about 10 or so do you want me to name them all?']],
-    ['yes name them all', [
+    ['yes, name them all', [
         'Okay then we have Wayne Gretzky, Sidney Crosby, Alexander Ovechkin, Patrick Kane, Jonathan Toews, Steven Stamkos, Robert Orr, Gordie Howe, P. K. Subban, and finally Tim Hortons']],
     ['who made you (.*)', ['I was made by Keegan Wright, Jivraj Grewal, Owen Spicker, Brenden Trieu, and Hassan Brar']],
     ['what year is it', ['The current year is 2021 as of my last update']],
@@ -202,7 +261,7 @@ pairs = [
     ['(.*) favourite food(.*)', ['I do not eat food. I am a bot. Ask me something else']],
     ['(.*) computers(.*)?', ['Ask me about sports. I can not understand anything else but sports']],
     ['(.*) clothes(.*)?', ['I am not a fashion bot. I am sports bot, ask about topics related to sports']],
-    ['', ['Sorry can you try again I do not understand']]
+    ['', ['Sorry can you try again, I do not understand']]
 ]
 
 # Entry Screen
