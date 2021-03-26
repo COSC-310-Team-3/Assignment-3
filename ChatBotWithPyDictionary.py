@@ -208,8 +208,8 @@ pairs = [
     ['i watch (.*)', ['Who is your favourite player?']],
     ['my favourite player is (.*)', ['%1? I have never heard of him, how many points a game do they score?']],
     ['(.*) scores (.*)', ['Thats not too bad but I bet I could beat him 1 on 1']],
-    ['No you could not', ['Yes I could, how many points can you score in your sport?']],
-    ['Yes you could', ['I know, how many points can you score in your sport?']],
+    ['No, you could not', ['Yes I could, how many points can you score in your sport?']],
+    ['Yes, you could', ['I know, how many points can you score in your sport?']],
     ['I can score (.*)', ['You can score %1? How old are you?']],
     ['i am (.*) years old',
      ['I guess thats not bad for a %1 year old. Is there anything you want to ask me regarding sports?']],
@@ -257,13 +257,13 @@ pairs = [
     ['(.*) best soccer player ever?', ['Many have said Pele, however no one has ever been as good as Messi']],
     ['(.*) best soccer team in Canada?', ['Vancouver Whitecaps']],
     ['(.*) best canadian soccer player?', ['Alphonso Davies']],
-    ['(.*)', ['Sorry can you try again I do not understand']],
     ['(.*) the weather outside?', ['I do not know, ask me about sports']],
-    ['(.*) cars(.*)', ['Why are you asking me about cars. I am a sports bot']],
-    ['(.*) favourite food(.*)', ['I do not eat food. I am a bot. Ask me something else']],
-    ['(.*) computers(.*)?', ['Ask me about sports. I can not understand anything else but sports']],
-    ['(.*) clothes(.*)?', ['I am not a fashion bot. I am sports bot, ask about topics related to sports']],
-    ['', ['Sorry can you try again, I do not understand']]
+    ['(.*) cars (.*)', ['Why are you asking me about cars. I am a sports bot']],
+    ['(.*) favourite food (.*)', ['I do not eat food. I am a bot. Ask me something else']],
+    ['(.*) computers (.*)?', ['Ask me about sports. I can not understand anything else but sports']],
+    ['(.*) clothes (.*)?', ['I am not a fashion bot. I am sports bot, ask about topics related to sports']],
+    ['', ['Sorry can you try again, I do not understand']],
+    ['(.*)', ['Sorry can you try again I do not understand']],
 ]
 
 # Entry Screen
