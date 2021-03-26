@@ -97,6 +97,8 @@ def tryConverseWithSynonyms(userIn):
     tokens = word_tokenize(userIn)
     words = nltk.pos_tag(tokens)
     queue = []
+    # add original input to queue
+    queue.append(userIn)
     i = 0
     for word in words:
         toMutate = tokens
@@ -132,7 +134,7 @@ def tryConverseWithSynonyms(userIn):
 # This function retrieves the userInput and then passes it to the console
 def sendClick():
     userInput = mesWin.get("1.0", END)
-    userInput = userInput.lower()
+    userInput = userInput
     text = word_tokenize(userInput)
     print(nltk.pos_tag(text))
     words = nltk.pos_tag(text)    
@@ -203,6 +205,7 @@ pairs = [
     ['(.*) play (.*)', ['Thats so cool! I used to play %2 as well. Do you watch %2?']],
     ['yes, i watch (.*)', ['Who is your favourite player?']],
     ['No, i do not watch (.*)', ['Really? What sport do you watch']],
+    ['i do not watch (.*)', ['Really? What sport do you watch']],
     ['i watch (.*)', ['Who is your favourite player?']],
     ['my favourite player is (.*)', ['%1? I have never heard of him, how many points a game do they score?']],
     ['(.*) scores (.*)', ['Thats not too bad but I bet I could beat him 1 on 1']],
