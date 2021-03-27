@@ -5,7 +5,9 @@
 
 This is a project to create a functional chatbot for COSC 310. The user should be able to hold basic conversation with the bot about sports. The role the agent will take is that of a friend, and the user can ask the agent questions about sports. This bot was built off of the previous bot created in assignment 2.
 ChatBot.ipynb was migrated to ChatBot.py, see commits to Chatbot.ipynb to see original structure of code before it was migrated and the contributors
-This program uses modified code from https://github.com/nltk/nltk/blob/develop/nltk/chat/util.py which is open source
+This program uses modified code from https://github.com/nltk/nltk/blob/develop/nltk/chat/util.py which is open source.
+
+Named Entity Recognition(NER) was implemented into the chatbot using NLTK. The bot seeks and extracts certain information and words. This impletmentation was possible through the bot recognizing verbs and adjectives and it then modifies the original with the synonms. If the bot can not converse with the user using Named Entity Recognition then the default response is used from the pair and reflections array.
 
 New features have been implemented in this bot, including POS tagging and sentiment analysis.
 
