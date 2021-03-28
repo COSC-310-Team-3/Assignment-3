@@ -53,3 +53,14 @@ my name is James
 I play soccer
 
                                                        [('I', 'PRP'), ('play', 'VBP'), ('soccer', 'NN')]
+                                                       
+                                                       
+Synonym Recognition was implemented into the chatbot in two different versions, one using the PyDictionary library, the other using NLTK's WordNet. They both function the same, passing words to the libraries which return synonyms for the words. To reduce memory usage only verbs and adjectives are passed to the libraries and then the sentence the user inputed is mutated to see if changing a synonym in will make the chatbot recognize the statement as a pair. We are somewhat restricted by libraries, as some words aren't properly recognized as synonyms, such as 'Best' being a synonym of 'greatest' but 'greatest' not being a synonym of 'best' according to the library. As you can see by the example below, the chatbot will reply with the same response to both statements.
+
+Example:
+
+I witness hockey
+                                            Who is your favourite hockey player?
+                                            
+I watch hockey                              Who is your favourite hockey player?
+
