@@ -60,7 +60,10 @@ Synonym Recognition was implemented into the chatbot in two different versions, 
 Example:
 
 I witness hockey
-                                            Who is your favourite hockey player?
+
+                                                          Who is your favourite hockey player?
                                             
-I watch hockey                              Who is your favourite hockey player?
+I watch hockey                            
+
+                                                          Who is your favourite hockey player?
 
