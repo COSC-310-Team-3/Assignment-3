@@ -7,8 +7,6 @@ This is a project to create a functional chatbot for COSC 310. The user should b
 ChatBot.ipynb was migrated to ChatBot.py, see commits to Chatbot.ipynb to see original structure of code before it was migrated and the contributors
 This program uses modified code from https://github.com/nltk/nltk/blob/develop/nltk/chat/util.py which is open source.
 
-Named Entity Recognition(NER) was implemented into the chatbot using NLTK. The bot seeks and extracts certain information and words. This impletmentation was possible through the bot recognizing verbs and adjectives and it then modifies the original with the synonms. If the bot can not converse with the user using Named Entity Recognition then the default response is used from the pair and reflections array.
-
 New features have been implemented in this bot, including POS tagging and sentiment analysis.
 
 Sentiment analysis adds to the bot by analyzing the user input, judging the overall sentiment, and providing an appropriate response if necessary. This was done by using the 'SentimentIntensityAnalyzer' function from the 'vaderSentiment' tool. When the user inputs a question/phrase, it is assigned a numerical value based on the overall sentiment (positive is a generally nice input, negative is a generally mean input). If the phrase is negative, the bot will get angry and tell the user it wasn't nice.
@@ -44,3 +42,13 @@ i was born in 1999, who won the premier league that year?
 
                                                        Sorry, I am unfamiliar with that year. Can you try again?
 
+Named Entity Recognition(NER) was implemented into the chatbot using NLTK's tagging and word tokenizer features along with the averaged perception tagger library in NLTK. The bot seeks and extracts each word the user types and breaks it apart with the word tokenizer. It then prints to console each individual words and it's association with the english language.  Associations such as pronouns, verbs, and adjectives are printed along with its tokened key as part of an array that includes all words of the user's input.  This feature helps programmers recognize the sentence structure the user inputs and can articulate additional conversation pair according to the logged inputs.
+
+Example:
+my name is James
+
+                                                       [('my', 'PRP$'), ('name', 'NN'), ('is', 'VBZ'), ('james', 'NNS')]
+                                                       
+I play soccer
+
+                                                       [('I', 'PRP'), ('play', 'VBP'), ('soccer', 'NN')]
